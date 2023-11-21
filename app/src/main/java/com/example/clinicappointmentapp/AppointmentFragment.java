@@ -14,135 +14,76 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AppointmentFragment extends Fragment {
 
-    private EditText etName, etAge, etSex, etPhone;
-    private Spinner spinnerAppointmentTimes;
-    private TextView tvSelectedDateTime;
+    private Spinner spinnerAvailableSlots;
+    private Button btnBookAppointment;
 
-    @SuppressLint("MissingInflatedId")
+    // Additional logic for managing available slots (you might use a List or an array of available slots)
+    private List<String> availableSlots = Arrays.asList("Slot 1", "Slot 2", "Slot 3");
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_appointment, container, false);
 
-        // Add your logic here
-        etName = view.findViewById(R.id.etName);
-        etAge = view.findViewById(R.id.etAge);
-        etSex = view.findViewById(R.id.etSex);
-        etPhone = view.findViewById(R.id.etPhone);
-        spinnerAppointmentTimes = view.findViewById(R.id.spinnerAppointmentTimes);
-        Button btnSelectDateTime = view.findViewById(R.id.btnSelectDateTime);
-        tvSelectedDateTime = view.findViewById(R.id.tvSelectedDateTime);
+        // Existing code
 
-        btnSelectDateTime.setOnClickListener(new View.OnClickListener() {
+        spinnerAvailableSlots = view.findViewById(R.id.spinnerAvailableSlots);
+        btnBookAppointment = view.findViewById(R.id.btnBookAppointment);
+
+        // Populate the spinner with available slots
+        populateAvailableSlotsSpinner();
+
+        // Set click listener for the book appointment button
+        btnBookAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDateTimePicker();
+                // Handle booking logic (update database, show confirmation, etc.)
+                bookAppointment();
             }
         });
-
-        // Populate the spinner with available appointment times
-        populateAppointmentTimesSpinner();
 
         return view;
     }
 
-    private void showDateTimePicker() {
-        // Implement date and time picker logic here
-        // You can use DatePickerDialog and TimePickerDialog
-        // to allow users to choose the date and time.
-
-        // For simplicity, let's assume you have a method to show a date picker
-        showDatePicker();
-    }
-
-    private void showDatePicker() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Handle the selected date
-                        showTimePicker();
-                    }
-                },
-                // Set initial date values if needed
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
-
-        datePickerDialog.show();
-    }
-
-    private void showTimePicker() {
-        // Implement TimePickerDialog logic here
-        // Set the selected date and time to tvSelectedDateTime TextView
-        // You can use a library or a custom method to show a time picker
-        // For simplicity, let's assume you have a method called showTimePickerDialog
-        showTimePickerDialog();
-    }
-
-    private void showTimePickerDialog() {
-        // Implement TimePickerDialog logic here
-        // Set the selected date and time to tvSelectedDateTime TextView
-
-        // Example code for a simple time picker
-        TimePickerDialog timePickerDialog = new TimePickerDialog(
-                getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        // Handle the selected time
-                        String selectedDateTime = getSelectedDateTime(hourOfDay, minute);
-                        tvSelectedDateTime.setText("Selected Date and Time: " + selectedDateTime);
-                    }
-                },
-                // Set initial time values if needed
-                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE),
-                false
-        );
-
-        timePickerDialog.show();
-    }
-
-    private String getSelectedDateTime(int hourOfDay, int minute) {
-        // Process the selected date and time
-        // You might want to format it as needed
-
-        // Example: Format as "YYYY-MM-DD HH:mm"
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-        Date date = new Date(); // Replace this with the actual date selected
-        date.setHours(hourOfDay);
-        date.setMinutes(minute);
-        return dateFormat.format(date);
-    }
-
-    private void populateAppointmentTimesSpinner() {
-        // Implement logic to populate the spinner with available appointment times
-        // You can use an array adapter to set the available times
-        // For simplicity, let's assume you have an array of times
-        String[] times = {"10:00 AM", "02:00 PM", "04:30 PM"};
-
+    private void populateAvailableSlotsSpinner() {
+        // Use an ArrayAdapter to populate the spinner with available slots
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(),
+                requireContext(),
                 android.R.layout.simple_spinner_item,
-                times
+                availableSlots
         );
 
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAvailableSlots.setAdapter(adapter);
+    }
 
-        // Apply the adapter to the spinner
-        spinnerAppointmentTimes.setAdapter(adapter);
+    private void bookAppointment() {
+        // Get the selected slot from the spinner
+        String selectedSlot = spinnerAvailableSlots.getSelectedItem().toString();
+
+        // Perform booking logic (update database, show confirmation, etc.)
+        // ...
+
+        // Remove the booked slot from the list of available slots
+        availableSlots.remove(selectedSlot);
+
+        // Update the spinner to reflect the changes
+        populateAvailableSlotsSpinner();
+
+        // Optionally, show a confirmation message to the user
+        Toast.makeText(requireContext(), "Appointment booked for " + selectedSlot, Toast.LENGTH_SHORT).show();
     }
 
 }
