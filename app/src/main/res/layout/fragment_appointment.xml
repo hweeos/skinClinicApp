@@ -8,7 +8,7 @@
         android:id="@+id/tvBookAppointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Appointment"
+        android:text="Request Appointment"
         android:textColor="@color/header_color"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
@@ -70,12 +70,14 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
-    <Spinner
-        android:id="@+id/spinnerAvailableSlots"
+    <EditText
+        android:id="@+id/etReason"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:hint="reason"
+        android:inputType="textCapCharacters"
         android:layout_below="@id/etResidence"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
@@ -83,12 +85,11 @@
         android:id="@+id/btnBookAppointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Appointment"
+        android:text="SUBMIT"
         android:backgroundTint="@color/btn_color"
-        android:layout_below="@id/spinnerAvailableSlots"
+        android:layout_below="@id/etReason"
         android:layout_marginTop="16dp"
         app:cornerRadius="8dp"
         android:layout_centerHorizontal="true"/>
-
 
 </RelativeLayout>

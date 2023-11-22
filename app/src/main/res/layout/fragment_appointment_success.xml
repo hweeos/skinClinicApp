@@ -1,0 +1,26 @@
+<!-- res/layout/fragment_appointment_success.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvReason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reason: "
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvSubmissionTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submission Time: "
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Add more TextView elements or UI components as needed -->
+
+</LinearLayout>

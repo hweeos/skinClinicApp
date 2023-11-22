@@ -1,55 +1,53 @@
 package com.example.clinicappointmentapp;
 
-import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class AppointmentFragment extends Fragment {
 
-    private Spinner spinnerAvailableSlots;
+    private EditText etName, etAge, etSex, etPhone, etResidence, etReason;
     private Button btnBookAppointment;
 
-    // Additional logic for managing available slots (you might use a List or an array of available slots)
-    private List<String> availableSlots = Arrays.asList("Slot 1", "Slot 2", "Slot 3");
+    // Firebase
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_appointment, container, false);
 
-        // Existing code
+        // Initialize Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("appointments");
 
-        spinnerAvailableSlots = view.findViewById(R.id.spinnerAvailableSlots);
+        // Initialize UI elements
+        etName = view.findViewById(R.id.etName);
+        etAge = view.findViewById(R.id.etAge);
+        etSex = view.findViewById(R.id.etSex);
+        etPhone = view.findViewById(R.id.etPhone);
+        etResidence = view.findViewById(R.id.etResidence);
+        etReason = view.findViewById(R.id.etReason);
+
         btnBookAppointment = view.findViewById(R.id.btnBookAppointment);
-
-        // Populate the spinner with available slots
-        populateAvailableSlotsSpinner();
-
-        // Set click listener for the book appointment button
         btnBookAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle booking logic (update database, show confirmation, etc.)
+                // Call the method to submit data
                 bookAppointment();
             }
         });
@@ -57,33 +55,53 @@ public class AppointmentFragment extends Fragment {
         return view;
     }
 
-    private void populateAvailableSlotsSpinner() {
-        // Use an ArrayAdapter to populate the spinner with available slots
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                availableSlots
-        );
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAvailableSlots.setAdapter(adapter);
-    }
-
     private void bookAppointment() {
-        // Get the selected slot from the spinner
-        String selectedSlot = spinnerAvailableSlots.getSelectedItem().toString();
+        String name = etName.getText().toString().trim();
+        String age = etAge.getText().toString().trim();
+        String sex = etSex.getText().toString().trim();
+        String phone = etPhone.getText().toString().trim();
+        String residence = etResidence.getText().toString().trim();
+        String reason = etReason.getText().toString().trim();
 
-        // Perform booking logic (update database, show confirmation, etc.)
-        // ...
+        // Check if any of the fields are empty
+        if (name.isEmpty() || age.isEmpty() || sex.isEmpty() || phone.isEmpty() || residence.isEmpty() || reason.isEmpty()) {
+            // Handle empty fields as needed
+            return;
+        }
 
-        // Remove the booked slot from the list of available slots
-        availableSlots.remove(selectedSlot);
+        // Get the current time
+        String submissionTime = getCurrentTime();
 
-        // Update the spinner to reflect the changes
-        populateAvailableSlotsSpinner();
+        // Create a new appointment object
+        Appointment appointment = new Appointment(name, age, sex, phone, residence, reason, submissionTime);
 
-        // Optionally, show a confirmation message to the user
-        Toast.makeText(requireContext(), "Appointment booked for " + selectedSlot, Toast.LENGTH_SHORT).show();
+        // Push the appointment data to Firebase
+        databaseReference.push().setValue(appointment);
+
+        // Clear the input fields
+        etName.setText("");
+        etAge.setText("");
+        etSex.setText("");
+        etPhone.setText("");
+        etResidence.setText("");
+        etReason.setText("");
+
+        // Show the success fragment with reason and submission time
+        showAppointmentSuccessFragment(reason, submissionTime);
     }
 
+    private void showAppointmentSuccessFragment(String reason, String submissionTime) {
+        AppointmentSuccessFragment successFragment = AppointmentSuccessFragment.newInstance(reason, submissionTime);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, successFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    // Method to get the current time in a specific format
+    private String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(Calendar.getInstance().getTime());
+    }
 }

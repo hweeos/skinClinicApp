@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "1071393152197",
-    "project_id": "skinclinicapp-7ff77",
-    "storage_bucket": "skinclinicapp-7ff77.appspot.com"
+    "project_number": "333401983102",
+    "firebase_url": "https://skinclinic-62b4c-default-rtdb.firebaseio.com",
+    "project_id": "skinclinic-62b4c",
+    "storage_bucket": "skinclinic-62b4c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1071393152197:android:2cb6e7f55f2bddb06ce4ac",
+        "mobilesdk_app_id": "1:333401983102:android:896b1acc3b002ae43df02f",
         "android_client_info": {
           "package_name": "com.example.clinicappointmentapp"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCZzLnP95qEjB2n1vO7rTUOhPma4joRKn8"
+          "current_key": "AIzaSyCo-QsiDxkETy8ddU0AXxWZLHeUPqYMpBQ"
         }
       ],
       "services": {
