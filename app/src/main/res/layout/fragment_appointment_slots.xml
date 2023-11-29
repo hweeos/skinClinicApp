@@ -1,0 +1,35 @@
+<!-- res/layout/fragment_appointment_slots.xml -->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Table Header -->
+    <TableRow>
+        <TextView
+            android:text="Date"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:text="Time"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:text="Duration"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:text="Doctor"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <!-- Table Rows (Populated Dynamically) -->
+    <!-- Add a new TableRow for each appointment in the loop -->
+
+</TableLayout>

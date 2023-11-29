@@ -25,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.navigation_home) {
                     selectedFragment = new HomeFragment();
                 } else if (menuItem.getItemId() == R.id.navigation_appointment) {
-                    selectedFragment = new AppointmentFragment();
-                } else if (menuItem.getItemId() == R.id.navigation_profile) {
-                    selectedFragment = new AppointmentSuccessFragment();
+                    selectedFragment = new AppointmentSlotsFragment();
                 }
 
                 getSupportFragmentManager().beginTransaction()

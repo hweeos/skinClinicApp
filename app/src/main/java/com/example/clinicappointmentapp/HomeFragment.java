@@ -22,7 +22,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private AppointmentAdapter appointmentAdapter;
+//    private AppointmentAdapter appointmentAdapter;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -33,11 +33,11 @@ public class HomeFragment extends Fragment {
 
         // Initialize UI elements
         recyclerView = view.findViewById(R.id.recyclerView);
-        appointmentAdapter = new AppointmentAdapter();
+//        appointmentAdapter = new AppointmentAdapter();
 
         // Set up RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(appointmentAdapter);
+//        recyclerView.setAdapter(appointmentAdapter);
 
         // Initialize Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 // Update the RecyclerView with the new data
-                appointmentAdapter.setAppointments(appointments);
+//                appointmentAdapter.setAppointments(appointments);
             }
 
             @Override

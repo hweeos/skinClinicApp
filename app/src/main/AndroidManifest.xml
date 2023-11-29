@@ -12,14 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClinicAppointmentApp"
         tools:targetApi="31">
+
+        <!-- Set the SignInActivity as the launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- Define SignUpActivity and MainActivity as needed -->
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true">
+            <!-- Add any necessary intent filters for SignUpActivity here -->
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <!-- Add any necessary intent filters for MainActivity here -->
         </activity>
     </application>
 

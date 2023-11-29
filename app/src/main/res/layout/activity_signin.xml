@@ -1,0 +1,54 @@
+<!-- res/layout/activity_signin.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".SignInActivity">
+
+    <!-- Logo ImageView -->
+    <ImageView
+        android:id="@+id/imageViewLogoSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/skin_clinic_logo_background"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/editTextSignInEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewLogoSignIn"
+        android:layout_marginTop="16dp"
+    android:layout_marginBottom="8dp"
+    android:hint="Email" />
+
+    <EditText
+        android:id="@+id/editTextSignInPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextSignInEmail"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="textPassword"
+        android:hint="Password" />
+
+    <Button
+        android:id="@+id/buttonSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextSignInPassword"
+        android:layout_marginTop="16dp"
+        android:text="Sign In" />
+
+    <Button
+        android:id="@+id/buttonGoToSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSignIn"
+        android:layout_marginTop="8dp"
+        android:text="Go to Sign Up" />
+
+</RelativeLayout>

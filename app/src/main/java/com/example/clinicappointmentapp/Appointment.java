@@ -1,53 +1,50 @@
 package com.example.clinicappointmentapp;
-
 public class Appointment {
-    private String name;
-    private String age;
-    private String sex;
-    private String phone;
-    private String residence;
-    private String reason;
-    private String submissionTime; // New field
+    private String appointmentDuration;
+    private String appointmentTime;
+    private String dateOfAppointment;
+    private String doctorAssigned;
 
-    // Default constructor required for calls to DataSnapshot.getValue(Appointment.class)
-    public Appointment() {}
-
-    public Appointment(String name, String age, String sex, String phone, String residence, String reason, String submissionTime) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.phone = phone;
-        this.residence = residence;
-        this.reason = reason;
-        this.submissionTime = submissionTime;
+    // Empty constructor for Firebase
+    public Appointment() {
     }
 
-    // Getter methods
-    public String getName() {
-        return name;
+    public Appointment(String appointmentDuration, String appointmentTime, String dateOfAppointment, String doctorAssigned) {
+        this.appointmentDuration = appointmentDuration;
+        this.appointmentTime = appointmentTime;
+        this.dateOfAppointment = dateOfAppointment;
+        this.doctorAssigned = doctorAssigned;
     }
 
-    public String getAge() {
-        return age;
+    public String getAppointmentDuration() {
+        return appointmentDuration;
     }
 
-    public String getSex() {
-        return sex;
+    public void setAppointmentDuration(String appointmentDuration) {
+        this.appointmentDuration = appointmentDuration;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getAppointmentTime() {
+        return appointmentTime;
     }
 
-    public String getResidence() {
-        return residence;
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
-    public String getReason() {
-        return reason;
+    public String getDateOfAppointment() {
+        return dateOfAppointment;
     }
 
-    public String getSubmissionTime() {
-        return submissionTime;
+    public void setDateOfAppointment(String dateOfAppointment) {
+        this.dateOfAppointment = dateOfAppointment;
+    }
+
+    public String getDoctorAssigned() {
+        return doctorAssigned;
+    }
+
+    public void setDoctorAssigned(String doctorAssigned) {
+        this.doctorAssigned = doctorAssigned;
     }
 }
