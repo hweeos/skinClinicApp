@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/skin_clinic_logo_background"
+        android:src="@drawable/skinclinic"
     android:layout_marginBottom="16dp" />
 
     <EditText
@@ -50,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPassword"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#12f852"
+        android:textColor="@color/black"
         android:text="Sign Up" />
 
 </RelativeLayout>

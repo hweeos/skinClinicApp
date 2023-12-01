@@ -1,11 +1,13 @@
 package com.example.clinicappointmentapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,8 +24,10 @@ public class SignInActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextPassword;
     private Button buttonSignIn, buttonGoToSignUp;
+    private CheckBox checkBoxKeepSignedIn;
 
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,11 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
 
         mAuth = FirebaseAuth.getInstance();
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
         editTextEmail = findViewById(R.id.editTextSignInEmail);
         editTextPassword = findViewById(R.id.editTextSignInPassword);
+        checkBoxKeepSignedIn = findViewById(R.id.checkBoxKeepSignedIn);
 
         buttonSignIn = findViewById(R.id.buttonSignIn);
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +57,14 @@ public class SignInActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Check if the user was previously signed in and the "Keep Signed In" checkbox was checked
+        if (sharedPreferences.getBoolean("keepSignedIn", false)) {
+            // Auto-sign in only if the checkbox is checked
+            if (checkBoxKeepSignedIn.isChecked()) {
+                signInUser();
+            }
+        }
     }
 
     private void signInUser() {
@@ -70,6 +84,11 @@ public class SignInActivity extends AppCompatActivity {
                             // Sign in success
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(SignInActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+
+                            // Save "Keep Signed In" preference
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("keepSignedIn", checkBoxKeepSignedIn.isChecked());
+                            editor.apply();
 
                             // Navigate to the activity that hosts your fragments (e.g., MainActivity)
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);

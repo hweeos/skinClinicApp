@@ -1,35 +1,54 @@
 <!-- res/layout/fragment_appointment_slots.xml -->
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Table Header -->
-    <TableRow>
-        <TextView
-            android:text="Date"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:text="Time"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:text="Duration"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:text="Doctor"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:layout_weight="1"/>
-    </TableRow>
+    <!-- Page Heading -->
+    <TextView
+        android:id="@+id/textViewPageHeading"
+        android:text="AVAILABLE SLOTS"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
 
-    <!-- Table Rows (Populated Dynamically) -->
-    <!-- Add a new TableRow for each appointment in the loop -->
+    <!-- TableLayout for Appointments -->
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#12f852"> <!-- Set background color -->
 
-</TableLayout>
+        <!-- Table Header -->
+        <TableRow>
+            <TextView
+                android:text="Date"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:text="Time"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:text="Duration"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:text="Doctor"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <!-- Table Rows (Populated Dynamically) -->
+        <!-- Add a new TableRow for each appointment in the loop -->
+
+    </TableLayout>
+</LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/skin_clinic_logo_background"
+        android:src="@drawable/skinclinic"
         android:layout_marginBottom="16dp" />
 
     <EditText
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewLogoSignIn"
         android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp"
-    android:hint="Email" />
+        android:layout_marginBottom="8dp"
+        android:hint="Email" />
 
     <EditText
         android:id="@+id/editTextSignInPassword"
@@ -35,12 +35,22 @@
         android:inputType="textPassword"
         android:hint="Password" />
 
+    <CheckBox
+        android:id="@+id/checkBoxKeepSignedIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextSignInPassword"
+        android:layout_marginTop="8dp"
+        android:text="Keep Signed In" />
+
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextSignInPassword"
+        android:layout_below="@id/checkBoxKeepSignedIn"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#12f852"
+        android:textColor="@color/black"
         android:text="Sign In" />
 
     <Button
@@ -49,6 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSignIn"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#12f852"
+        android:textColor="@color/black"
         android:text="Go to Sign Up" />
 
 </RelativeLayout>
