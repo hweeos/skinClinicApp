@@ -1,13 +1,184 @@
-<!-- res/layout/fragment_home.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <!-- Space for App Icon -->
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/skinclinic" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:clipToPadding="false" />
+        android:columnCount="2"
+        android:rowCount="3"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_margin="16dp"
+        android:layout_below="@id/appIcon">
 
+        <!-- UPCOMING EVENTS -->
+        <FrameLayout
+            android:id="@+id/upcomingEventsSquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_blue_light"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick">-->
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_upcoming_events"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UPCOMING EVENTS"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- MEDICAL HISTORY -->
+        <FrameLayout
+            android:id="@+id/medicalHistorySquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_green_light"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick">-->
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_medical_history"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MEDICAL HISTORY"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- NOTIFICATIONS -->
+        <FrameLayout
+            android:id="@+id/notificationsSquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_red_light"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick">-->
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_notifications"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NOTIFICATIONS"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- REVIEW DATE -->
+        <FrameLayout
+            android:id="@+id/reviewDateSquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_orange_light"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick"-->
+
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_review_date"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REVIEW DATE"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- BOOK APPOINTMENT -->
+        <FrameLayout
+            android:id="@+id/bookAppointmentSquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_purple"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick">-->
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_book_appointment"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BOOK APPOINTMENT"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- CONTACT US -->
+        <FrameLayout
+            android:id="@+id/contactUsSquare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:clickable="true">
+            <!--            android:onClick="onItemClick">-->
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_contact_us"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONTACT US"
+                android:gravity="bottom|center_horizontal"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+    </GridLayout>
 </RelativeLayout>
